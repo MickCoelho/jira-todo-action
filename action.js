@@ -141,10 +141,6 @@ module.exports = class {
       commits.map(async (c) => {
         const res = await this.GitHub.getCommitDiff(repo.full_name, c.id);
 
-        console.log("res:");
-        console.log(res);
-        console.log("c:");
-        console.log(c);
         const rx = /^\+.*(?:\/\/|#)\s+TODO:(.*)$/gm;
 
         return getMatches(res, rx, 1)
