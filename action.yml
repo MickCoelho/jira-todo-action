@@ -1,0 +1,29 @@
+name: Jira issue from TODO
+description: Create Jira issue for TODO comments
+branding:
+  icon: "check-square"
+  color: "blue"
+inputs:
+  project:
+    description: Key of the project
+    required: true
+  issuetype:
+    description: "Type of the issue to be created. Example: 'Incident'"
+    default: "This ticket has been automatically generated based on a commit from: *${committerName}*\n Commit URL: ${commitUrl}"
+    required: true
+  description:
+    description: Issue description
+    required: false
+  labels:
+    description: An array of labels
+    default: from-todo,needs-triage
+    required: false
+  customfield_10184:
+    description: Squad name
+    required: true
+outputs:
+  issues:
+    description: Well-formed JSON array containing keys of all newly created issues
+runs:
+  using: "node12"
+  main: "./dist/index.js"
